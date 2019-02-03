@@ -19,10 +19,8 @@ class WorldCup
   end
 
   def all_players_by_position
-    all_players = []
-    @teams.map { |team| all_players << team.players  }
-    all_players.flatten!
-    all_players = all_players.group_by { |player| player.position }
-    all_players.each_value { |player_list| player_list.sort_by!(&:name) }
+    all_players = @teams.map { |team| team.players }.flatten
+    hash_players = all_players.group_by { |player| player.position }
+    hash_players.each_value { |player_list| player_list.sort_by!(&:name) }
   end
 end
